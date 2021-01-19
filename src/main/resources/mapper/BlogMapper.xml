@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.BlogMapper">
+    <!--查询所有博客-->
+    <select id="queryBlogList" resultType="Blog">
+        select * from blog
+    </select>
+
+    <!--根据博客Id查询博客-->
+    <select id="queryByBlogId" parameterType="Integer" resultType="Blog">
+        select * from blog where blog_id=#{blog_id}
+    </select>
+
+    <select id="selectBlog" parameterType="String" resultType="Blog">
+        select * from blog where blog_title LIKE #{select}
+    </select>
+
+    <!--根据用户Id查询博客-->
+    <select id="queryByUserId" parameterType="Integer" resultType="Blog">
+        select * from blog where blog_authorId=#{user_id}
+    </select>
+
+    <!--增加博客-->
+    <select id="addBlog" parameterType="Blog">
+        insert into blog (blog_id, blog_time, blog_content, blog_title, blog_authorId) VALUES (#{blog_id}, #{blog_time}, #{blog_content}, #{blog_title}, #{blog_authorId})
+    </select>
+
+    <!--更新博客-->
+    <select id="updateBlog" parameterType="Blog">
+        update blog set blog_time=#{blog_time}, blog_content=#{blog_content},blog_title=#{blog_title}, blog_authorId=#{blog_authorId} where blog_id=#{blog_id}
+    </select>
+
+
+    <!--删除用户-->
+    <select id="deleteBlog" parameterType="Integer">
+        delete from blog where blog_id=#{blog_id}
+    </select>
+</mapper>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.TeamMapper">
+    <!--查询所有队伍-->
+    <select id="queryTeamList" resultType="Team">
+        select * from team
+    </select>
+
+    <!--根据队伍名查询队伍-->
+    <select id="queryByTeamId" parameterType="Integer" resultType="Team">
+        select * from team where team_id=#{team_id}
+    </select>
+
+    <!--增加队伍-->
+    <select id="addTeam" parameterType="Team">
+        insert into team (team_id,team_department, team_photo) VALUES (#{team_id},#{team_department},#{team_photo})
+    </select>
+
+    <!--更新队伍-->
+    <select id="updateTeam" parameterType="Team">
+        update team set team_department=#{team_department}, team_photo=#{team_photo} where team_id=#{team_id}
+    </select>
+
+    <!--删除队伍-->
+    <select id="deleteTeam" parameterType="Integer">
+        delete from team where team_id=#{team_id}
+    </select>
+</mapper>

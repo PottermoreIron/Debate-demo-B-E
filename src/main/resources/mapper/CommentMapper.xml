@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.CommentMapper">
+    <!--查询所有评论-->
+    <select id="queryCommentList" resultType="Comment">
+        select * from comment
+    </select>
+
+    <!--根据评论Id查询评论-->
+    <select id="queryByCommentId" parameterType="Integer" resultType="Comment">
+        select * from comment where comment_id=#{comment_id}
+    </select>
+
+    <!--根据博客Id查询评论-->
+    <select id="queryByBlogId" parameterType="Integer" resultType="Comment">
+        select * from comment where comment_blogId=#{blog_id}
+    </select>
+
+    <!--根据评论人Id查询评论-->
+    <select id="queryByUser1Id" parameterType="Integer" resultType="Comment">
+        select * from comment where comment_senderId=#{user1_id}
+    </select>
+
+    <!--根据被评论人Id查询评论-->
+    <select id="queryByUser2Id" parameterType="Integer" resultType="Comment">
+        select * from comment where comment_receiverId=#{user2_id}
+    </select>
+
+    <!--增加评论-->
+    <select id="addComment" parameterType="Comment">
+        insert into comment (comment_id, comment_blogId, comment_senderId, comment_receiverId, comment_time, comment_content) VALUES (#{comment_id},#{comment_blogId}, #{comment_senderId}, #{comment_receiverId}, #{comment_time}, #{comment_content})
+    </select>
+
+    <!--更新评论-->
+    <select id="updateComment" parameterType="Comment">
+        update comment set comment_blogId=#{comment_blogId}, comment_senderId=#{comment_senderId}, comment_receiverId=#{comment_receiverId}, comment_time=#{comment_time},comment_content=#{comment_content} where comment_id=#{comment_id}
+    </select>
+
+    <!--删除评论-->
+    <select id="deleteComment" parameterType="Integer">
+        delete from comment where comment_id=#{comment_id}
+    </select>
+</mapper>

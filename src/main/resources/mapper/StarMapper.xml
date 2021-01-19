@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.StarMapper">
+    <!--查询所有收藏-->
+    <select id="queryStarList" resultType="Star">
+        select * from star
+    </select>
+
+    <!--根据收藏Id查询收藏-->
+    <select id="queryByStarId" parameterType="Star" resultType="Star">
+        select * from star where star_blogId=#{star_blogId} and star_userId=#{star_userId}
+    </select>
+    <!--根据文章Id查询收藏-->
+    <select id="queryByBlogId" parameterType="Integer" resultType="Star">
+        select * from star where star_blogId=#{star_blogId}
+    </select>
+
+    <!--根据用户Id查询收藏-->
+    <select id="queryByUserId" parameterType="Integer" resultType="Star">
+        select * from star where star_userId=#{star_userId}
+    </select>
+
+    <!--增加收藏-->
+    <select id="addStar" parameterType="Star">
+        insert into star (star_userId, star_blogId) VALUES (#{star_userId}, #{star_blogId})
+    </select>
+
+    <!--更新收藏-->
+
+
+    <!--删除收藏-->
+    <select id="deleteStar" parameterType="Star">
+        delete from star where star_blogId=#{star_blogId} and star_userId=#{star_userId}
+    </select>
+</mapper>

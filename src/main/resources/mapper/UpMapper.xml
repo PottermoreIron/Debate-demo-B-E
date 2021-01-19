@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.UpMapper">
+
+    <!--查询所有点赞-->
+    <select id="queryUpList" resultType="Up">
+        select * from up
+    </select>
+
+    <select id="queryByUpId" parameterType="Up" resultType="Up">
+        select * from up where up_blogId=#{up_blogId} and up_userId=#{up_userId}
+    </select>
+
+    <!--根据博客Id查询点赞-->
+    <select id="queryByBlogId" parameterType="Integer" resultType="Up">
+        select * from up where up_blogId=#{blog_id}
+    </select>
+
+    <!--增加点赞-->
+    <select id="addUp" parameterType="Up">
+        insert into up (up_userId, up_blogId) VALUES (#{up_userId},#{up_blogId})
+    </select>
+
+    <!--更新点赞-->
+
+    <!--删除点赞-->
+    <select id="deleteUp" parameterType="Up">
+        delete from up where up_userId=#{up_userId} and up_blogId=#{up_blogId}
+    </select>
+</mapper>
